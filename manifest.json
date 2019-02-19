@@ -1,0 +1,8 @@
+{
+    "version": "2.0.0",
+    "description": "This is a manifest to illustrate a potential GitOps approach to deployment for any application",
+    "artifacts": {
+        "web": "my-website-2.0.0.zip",
+        "api": "my-api-1.0.4.zip"
+    }
+}

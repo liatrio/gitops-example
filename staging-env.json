@@ -1,0 +1,12 @@
+{
+    "web": {
+        "host": "STAGING_WEB_IP",
+        "deployment_path": "/path/to/application",
+        "healthcheck_url": "bttp://URL_to_healthcheck_the_STAGING_environment"
+    },
+    "api": { 
+        "host": "STAGING_API_IP",
+        "deployment_path": "/path/to/application",
+        "healthcheck_url": "bttp://URL_to_healthcheck_the_STAGING_environment"
+    }
+}
