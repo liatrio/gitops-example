@@ -26,11 +26,12 @@ Many CI/CD tools could be used to accomplish this functionality.  The basic requ
 I have chosen to use a Jenkinsfile (declarative Jenkins pipeline) to illustrate the process as follows:
 ### Preparation
 1. Create a starter manifest in a "master" branch to outline the information needed to deploy any artifact to any location.
-   * Refer to [manifest.json](manifest.json) as an example. I started with *dev* but you can look at it as the lowest environment not deployed to automatically by your CI process.
-   * You should pay attention to the `app_version` as this is the most important item.  This along with the `manifest_version` is the section that would change most often.  They may be different because you may choose to deploy multiple artifacts/versions of different applications.
+   * Refer to [manifest.json](manifest.json) as an example on how to outline which applications need to be deployed
+   * The **version** and **artifacts** are the sections that would change most often. They may be different because you may choose to deploy multiple artifacts/versions of different applications.
    * Remember, this process is for deploying anything anywhere or promoting from env to env but we want to make sure we're using versioned artifacts.
 2. Prior to deploying your application to any environments, you will define your application's "path to production" by creating a branch per environment in your "GitOps deployment repo". Create one branch per environment defined in your app's path to prod (like **dev -> staging -> production**). Use this repo as an example.
     * Note that this is independent of your actual "_code_" repository. We're not talking about the application code here but instead deploying the immutable artifacts or infrastructure it creates.
+    * I have chosen to reference environment information from some static files: [dev-env.json](dev-env.json), [staging-env.json](staging-env.json), [prod-env.json](prod-env.json) but your environment information can come from anywhere.  Having it in Git, if the environments are static, is a great way to have it tracked at all times.
     * This manifest/gitops repo may be completely disconnected from your application builds but could also be updated by CI to update a version if you like. *This is for deployment processes only.*
 3. Create a deployment script like the [Jenkinsfile](Jenkinsfile) to outline the specific stages and parses values from the manifest corresponding to the branch logic applied to each environment.
    * Feel free to use any CI tool/process you like here. The declarative Jenkinsfile makes it super simple to enable branch-specific logic we can use for GitOps
@@ -53,7 +54,7 @@ I have chosen to use a Jenkinsfile (declarative Jenkins pipeline) to illustrate 
    * Production deployment: ![production deployment](/resources/production_deploy.png)
 
 ## Restricting Deployment to Production or Protected Environments
- * You may wish to make the production depployment more restrictive
+ * You may wish to make the production deployment more restrictive
    * Merge restrictions come into play in an enterprise environment where you may wish to assign certain team members the ability to deploy to some environments but not others
    * You may want to restrict Production deployments to a certain team.  You can lock down merge capabilities to some branches/environments and require certain reviewers in others 
       * GitHub, among others, enable users to control these restrictions at a very granular level:
