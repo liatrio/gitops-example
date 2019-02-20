@@ -1,4 +1,4 @@
-# gitops-deployment
+![gitops](/resources/gitops.png)
 ## What is GitOps?
 ### GitOps was originally defined by [WeaveWorks](https://www.weave.works/technologies/gitops/) as a way to have Git at the center of your delivery pipeline. After implementing GitOps, Git becomes the source of truth for deployment and delivery activities of your application and infrastructure.
 ### While the original purpose of GitOps was to manage deployments and tasks for Kubernetes, we can use this approach to improve Continuous Delivery practices for any application or change in your delivery pipeline.
@@ -46,7 +46,7 @@ I have chosen to use a Jenkinsfile (declarative Jenkins pipeline) to illustrate 
       * Normally you'll PR from environment to environment to **promote** your application but you can PR from any branch to any branch. What if you want to take what's in **production** and deploy it to **qa**? The main point here is to make any change traceable
 2. If deploying/promoting your artifacts manually by PR, you will assign reviewers to help validate the correct application version in the manifest or any other changes that need review.
 3. Depending on your process, you can merge into the environment yourself after approvals or allow others the honor of merging into target environments.
-   * ![repo restrictions](/resources/branch_restrictions.png)
+   * 
 4. Upon PR merge (or automated commit), the process will kick off and deploy the application listed in the manifest to the environment aligned to the branch you're merging into. 
    * Dev deployment: ![dev deployment](/resources/dev_deploy.png) 
    * Staging deployment: ![staging deployment](/resources/staging_deploy.png)
